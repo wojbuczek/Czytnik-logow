@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package bzip2;
 
-package czytnik.logow;
+import java.util.ArrayList;
 
 /**
  *
  * @author Wojciech
  */
-public interface AlgorytmKompresji {
-    public byte[] kompresuj(byte[] dane);
-    public byte[] dekompresuj(byte[] daneSkompresowane);
+public class slownik {
+
+    public ArrayList<Byte> kod;
+
+    public slownik() {
+        kod = new ArrayList<Byte>();
+    }
 }
