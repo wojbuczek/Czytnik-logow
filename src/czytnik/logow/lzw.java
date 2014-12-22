@@ -12,13 +12,14 @@ package czytnik.logow;
  */
 public class lzw implements AlgorytmKompresji{
 
+    
     @Override
-    public byte[] kompresuj(String dane) {
+    public byte[] kompresuj(byte[] dane) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String dekompresuj(byte[] daneSkompresowane) {
+    public byte[] dekompresuj(byte[] daneSkompresowane) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
