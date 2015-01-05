@@ -20,7 +20,6 @@ public class Huffman {
     
     private static slownik []sl;
     
-    
     public static ArrayList<Byte> codeHUFF(int[] resMTF) {
         ArrayList<Byte> resHuff = new ArrayList<Byte>();
         ArrayList<Byte> lastResult = new ArrayList<Byte>();
@@ -34,10 +33,10 @@ public class Huffman {
         for (int i = 0; i < resMTF.length; i++) {
             liczniki[resMTF[i]]++;
         }
-
+        
         Tree HT = new Tree();
         Node root = HT.createHuffTree(liczniki);
-
+        
         Node x =root;
         sl = new slownik[ByteSize];
         for (int i = 0; i < sl.length; i++) 
@@ -45,8 +44,9 @@ public class Huffman {
         ArrayList<Byte> kod = new ArrayList<>();
         
         while (x!=null && x.l != null) {
+            int tmp = x.r.k-128;
             kod.add((byte)1);
-            bzip2.Dict.add(Byte.valueOf(""+x.r.k));
+            bzip2.Dict.add(Byte.valueOf(""+tmp));
             sl[x.r.k].kod = (ArrayList<Byte>) kod.clone();
             kod.remove(kod.size()-1);
             kod.add((byte)0);
@@ -55,10 +55,11 @@ public class Huffman {
         }
         
         if(x!=null){
+            int tmp = x.k-128;
             kod.add((byte)0);
             sl[x.k].kod = (ArrayList<Byte>) kod.clone();
             lengthOfDict++;
-            bzip2.Dict.add(Byte.valueOf(""+x.k));
+            bzip2.Dict.add(Byte.valueOf(""+tmp));
         }
         
         for (int i = 0; i < resMTF.length; i++) {
@@ -67,34 +68,34 @@ public class Huffman {
         }
         //System.out.println("Max is "+Byte.MAX_VALUE+" "+resHuff.size()+"  "+resHuff);
         int i;
-        for(i=0; i+7<resHuff.size(); i+=7){
-            List<Byte> slowo=(resHuff.subList(i, i+7));
+        for(i=0; i+8<resHuff.size(); i+=8){
+            List<Byte> slowo=(resHuff.subList(i, i+8));
             //System.out.println(i+" - "+(i+7)+"  "+resHuff.subList(i, i+7));
             int wynik=0;
-            for(int j=6; j>=0; j--){
-                wynik+=(slowo.get(j) *Math.pow(2,6-j));
+            for(int j=7; j>=0; j--){
+                wynik+=(slowo.get(j) *Math.pow(2,7-j));
             }
-            lastResult.add( Byte.valueOf(""+wynik) );
+            lastResult.add( Byte.valueOf(""+(wynik-128) ) );
         }
             List<Byte> slowo=(resHuff.subList(i, resHuff.size()));
             //System.out.println(i+" - "+(i+7)+"  "+resHuff.subList(i, resHuff.size()));
             int wynik=0;
             for(int j=resHuff.size()-i-1; j>=0; j--){
-                wynik+=(slowo.get(j)*Math.pow(2, 6-j));
+                wynik+=(slowo.get(j)*Math.pow(2, 7-j));
             }
             
-            lastResult.add( Byte.valueOf(""+wynik) );
+            lastResult.add( Byte.valueOf(""+(wynik-128) ) );
         
         return lastResult;
     }
 
     public static int [] decodeHuff(byte[] daneSkompresowane){
         ArrayList<Integer> res = new ArrayList<Integer>();
-        int index=lengthOfDict+2;
+        int index=lengthOfDict+2+daneSkompresowane[0];
         int inDict=0;
         //System.out.print("[");
         for(int j=index; j<daneSkompresowane.length; j++){
-            int x = daneSkompresowane[j];
+            int x = daneSkompresowane[j]+128;
             inDict--;
             int wsk = ByteSize;
             do{
@@ -118,7 +119,7 @@ public class Huffman {
         
         int result[] = new int[res.size()];
         for(int j=0; j<result.length; j++)
-            result[j]=res.get(j);
+            result[j]=res.get(j)+128;
         return result;
     }
     

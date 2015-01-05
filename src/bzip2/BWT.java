@@ -16,13 +16,15 @@ import java.util.Comparator;
  */
 public class BWT {
 
-    public static char[] codeBTW(byte[] dane) {
+    public static int[] codeBTW(byte[] daneByte) {
         //Transformata Burrowsa-Wheelera
-        Integer[] ind = new Integer[dane.length];
-        char[] resBWT = new char[dane.length];
+        Integer[] ind = new Integer[daneByte.length];
+        int[] resBWT = new int[daneByte.length];
+        int dane[] = new int[daneByte.length];
 
         for (int i = 0; i < ind.length; i++) {
             ind[i] = i;
+            dane[i]=daneByte[i]+128;
         }
 
         //Sortowanie leksykalne indeksów
@@ -31,45 +33,46 @@ public class BWT {
         //Przepisywanie znaków wejściowych w nowej kolejności do tablicy wyjściowej
         for (int i = 0; i < ind.length; i++) {
             int Index = (ind[i] + dane.length - 1) % dane.length;
-            resBWT[i] = (char) dane[Index];
+            resBWT[i] = dane[Index];
         }
 
         //Znajdywanie indeksu pierwszego znaku danych wejściowych w danych wyjściwoych
         for (int i = 0; i < ind.length; i++) {
             if (ind[i] == 1) {
-                primaryIndex = i;
+                primaryIndex=i;
                 break;
             }
         }
+        
         return resBWT;
     }
 
-    public static byte[] decodeBWT(char[] BWT) {
+    public static int[] decodeBWT(int[] BWT) {
         int[] liczniki = new int[ByteSize];
-        byte[] clone = new byte[BWT.length];
-        char[] BWT2 = new char[BWT.length];
+        int[] clone = new int[BWT.length];
+        int[] BWT2 = new int[BWT.length];
         int[] inds = new int[BWT.length];
         for (int i = 0; i < liczniki.length; i++) {
             liczniki[i] = 0;
         }
-
+        
         for (int i = 0; i < BWT.length; i++) {
             liczniki[BWT[i]]++;
-            clone[i] = (byte) BWT[i];
+            clone[i] = BWT[i];
             BWT2[i] = BWT[i];
         }
         int x = 0;
         for (int i = 0; i < liczniki.length; i++) {
             if (liczniki[i] > 0) {
                 while (liczniki[i]-- > 0) {
-                    BWT[x++] = (char) i;
+                    BWT[x++] =  i;
                 }
             }
         }
         for (int i = 0; i < BWT.length; i++) {
             for (int j = 0; j < BWT.length; j++) {
                 if (clone[j] != -1 && BWT[i] == clone[j]) {
-                    clone[j] = (byte) -1;
+                    clone[j] = -1;
                     inds[i] = j;
                     break;
                 }
@@ -79,15 +82,19 @@ public class BWT {
         int i = 0;
         int k = primaryIndex;
         while (i < clone.length) {
-            clone[i++] = (byte) BWT2[k];
+            clone[i++] = BWT2[k];
             k = inds[k];
+        }
+        
+        for (i = 0; i < clone.length; i++) {
+            clone[i]=clone[i]-128;
         }
         return clone;
     }
 
-    private static void sortLex(byte[] dane, Integer[] res) {
+    private static void sortLex(int[] dane, Integer[] res) {
 
-        final byte[] tmp = dane;
+        final int[] tmp = dane;
         Comparator<Integer> lexComparator = new Comparator<Integer>() {
             @Override
             public int compare(Integer t, Integer t1) {
