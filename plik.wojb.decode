@@ -1,4 +1,4 @@
-Jan  3 22:34:28 adam-VirtualBox rsyslogd: [origin software="rsyslogd" swVersion="7.4.4" x-pid="395" x-info="http://www.rsyslog.com"] start
+an  3 22:34:28 adam-VirtualBox rsyslogd: [origin software="rsyslogd" swVersion="7.4.4" x-pid="395" x-info="http://www.rsyslog.com"] start
 Jan  3 22:34:28 adam-VirtualBox rsyslogd: rsyslogd's groupid changed to 104
 Jan  3 22:34:28 adam-VirtualBox rsyslogd: rsyslogd's userid changed to 101
 Jan  3 22:34:28 adam-VirtualBox rsyslogd-2039: Could no open output pipe '/dev/xconsole': No such file or directory [try http://www.rsyslog.com/e/2039 ]
@@ -3686,4 +3686,4 @@ Jan  7 21:26:26 adam-VirtualBox kernel: [   43.218243] type=1400 audit(142066238
 Jan  7 21:26:26 adam-VirtualBox kernel: [   43.218248] type=1400 audit(1420662386.050:63): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/sbin/cupsd" pid=1937 comm="apparmor_parser"
 Jan  7 21:26:26 adam-VirtualBox kernel: [   43.218770] type=1400 audit(1420662386.050:64): apparmor="STATUS" operation="profile_replace" profile="unconfined" name="/usr/sbin/cupsd" pid=1937 comm="apparmor_parser"
 Jan  7 21:30:57 adam-VirtualBox anacron[761]: Job `cron.daily' started
-Jan  7 21:30:57 adam-VirtualBox anacron[2079]: Updated timestamp for job `cron.daily' to 2015-01-07
+Jan  7 21:30:57 adam-VirtualBox anacron[2079]: Updated timestamp for job `cron.daily' to 2015-01-07J
