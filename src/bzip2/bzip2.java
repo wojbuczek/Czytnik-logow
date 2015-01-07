@@ -35,8 +35,7 @@ public class bzip2 implements AlgorytmKompresji {
         
         //System.out.println("Rozpoczynam dekodowanie Bzip2");
         
-        
-        Dict.clear();
+        Dict = new ArrayList<>();
         primaryIndex=0;
         int k = daneSkompresowane[0];
         for(int i=0; i<k; i++){

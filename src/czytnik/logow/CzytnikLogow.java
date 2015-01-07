@@ -50,6 +50,8 @@ public class CzytnikLogow {
             }
             byte[] daneWej = Files.readAllBytes(Paths.get(args[1]));
         
+            System.out.println("Trwa dekodowanie pliku.");
+            
             byte[] daneWyj = ak.dekompresuj(daneWej);
             Files.write(Paths.get(args[1]+".decode"), daneWyj);
             
