@@ -23,7 +23,7 @@ public class CzytnikLogow {
     public static void main(String[] args) throws IOException{
         
         testBzip2();
-        testLZW();
+        //testLZW();
     }
     
     

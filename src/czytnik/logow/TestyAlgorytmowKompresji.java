@@ -46,9 +46,13 @@ public class TestyAlgorytmowKompresji {
         else
             System.out.println("Kompresja miała miejsce");
         System.out.println("------------------------");
+        
+          Grep grep = new Grep(daneWyj2);
+        
+        grep.initGrep();
     }
     public static void testLZW() throws IOException{
-        byte[] daneWej = Files.readAllBytes(Paths.get("plik.txt"));
+        byte[] daneWej = Files.readAllBytes(Paths.get("plik2.txt"));
         int wagaPocz = daneWej.length;
         int wagaKon;
         
@@ -83,5 +87,6 @@ public class TestyAlgorytmowKompresji {
         Grep grep = new Grep(daneWyj2);
         
         grep.initGrep();
+        
     }
 }

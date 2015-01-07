@@ -41,13 +41,14 @@ public class Grep {
 
     public void processRegularExpression(String regex) {
 
-        String c = regex;
-        Pattern p = Pattern.compile(c);
+        Pattern p = Pattern.compile(regex);
+        Matcher m;
         String[] tab = (new String(dane)).split("\n");
+        int total = 0;
 
         for (String value : tab) {
 
-            Matcher m = p.matcher(value);
+            m = p.matcher(value);
 
             int count = 0;
             while (m.find()) {
@@ -55,13 +56,30 @@ public class Grep {
                     System.out.println(value);
                 }
                 count++;
+                total++;
+                /*
                 System.out.println("Match number: "
                         + count);
-                System.out.println("start(): "
+                System.out.println("Start: "
                         + m.start());
-                System.out.println("end(): "
+                System.out.println("End: "
                         + m.end());
+                */
             }
         }
+        if (total > 0) {
+            System.out.println();
+            if (total == 1) {
+                System.out.println("Found " + total + " matching patern in total.");
+            } else {
+                System.out.println("Found " + total + " matching paterns in total.");
+            }
+            System.out.println();
+        } else {
+            System.out.println();
+            System.out.println("Not found matching patterns!");
+            System.out.println();
+        }
+
     }
 }
