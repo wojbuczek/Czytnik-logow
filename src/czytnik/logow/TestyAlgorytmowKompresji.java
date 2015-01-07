@@ -55,6 +55,7 @@ public class TestyAlgorytmowKompresji {
         AlgorytmKompresji k = new LZW();
         
         byte[] daneWyj = k.kompresuj(daneWej);
+        //System.out.println(new String(daneWej));
         wagaKon = daneWyj.length;
         
         Path path = Paths.get("plik.wrob");
@@ -76,5 +77,11 @@ public class TestyAlgorytmowKompresji {
         else
             System.out.println("Kompresja miała miejsce");
         System.out.println("------------------------");
+        
+        //System.out.println(new String(daneWyj2));
+        
+        Grep grep = new Grep(daneWyj2);
+        
+        grep.initGrep();
     }
 }

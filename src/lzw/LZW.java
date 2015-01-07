@@ -23,6 +23,8 @@ public class LZW implements AlgorytmKompresji {
     public byte[] kompresuj(byte[] dane) {
         int size = 0;
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        
+        //
         String line = new String(dane);
         String temp;
         ArrayList<String> dic = new ArrayList<String>();
@@ -55,11 +57,12 @@ public class LZW implements AlgorytmKompresji {
             }
 
         }
-
+        
         BitOutputStream bos = new BitOutputStream(bout);
         ListIterator<Integer> iter = values.listIterator();
 
         String binary = Integer.toBinaryString(size);
+        
         size = binary.length();
         bos.write(5, size);
         while (iter.hasNext()) {
@@ -75,7 +78,7 @@ public class LZW implements AlgorytmKompresji {
     public byte[] dekompresuj(byte[] daneSkompresowane) {
         int size;
         InputStream bin = new ByteArrayInputStream(daneSkompresowane);
-        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        //ByteArrayOutputStream bout = new ByteArrayOutputStream();
         StringBuilder sb = new StringBuilder();
         
         ArrayList<Integer> values = new ArrayList<Integer>();
