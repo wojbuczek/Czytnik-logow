@@ -33,7 +33,7 @@ public class bzip2 implements AlgorytmKompresji {
     public byte[] dekompresuj(byte[] daneSkompresowane) {
         
         
-        System.out.println("Rozpoczynam dekodowanie Bzip2");
+        //System.out.println("Rozpoczynam dekodowanie Bzip2");
         
         
         Dict.clear();
@@ -54,21 +54,21 @@ public class bzip2 implements AlgorytmKompresji {
         //System.out.println(2+lengthOfDict+" "+daneSkompresowane[2+lengthOfDict]);
         //Huffman decode
         
-        System.out.println("Dekodowanie Huffmana");
+        //System.out.println("Dekodowanie Huffmana");
         int []resHuff = decodeHuff(daneSkompresowane);
         
         //Move To Front decode
-        System.out.println("Dekodowanie Move To Front");
+        //System.out.println("Dekodowanie Move To Front");
         char resMTF[] = decodeMTF( resHuff);
                 
         //BWT decode
-        System.out.println("Dekodowanie BWT");
+        //System.out.println("Dekodowanie BWT");
         byte resBWT[] = decodeBWT( resMTF);
         byte res[] = new byte[resBWT.length];
         for(int i=0; i<resBWT.length; i++)
             res[i]=Byte.parseByte(""+resBWT[i]);
         
-        System.out.println("Zakończyłem dekodowanie Bzip2");
+        //System.out.println("Zakończyłem dekodowanie Bzip2");
         return res;
     }
 

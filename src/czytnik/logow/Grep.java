@@ -24,7 +24,7 @@ public class Grep {
     }
 
     public void initGrep() {
-        System.out.print("Enter your regular expression: ");
+        System.out.print("Wprowadź wzorzec do odszukania: ");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -70,14 +70,14 @@ public class Grep {
         if (total > 0) {
             System.out.println();
             if (total == 1) {
-                System.out.println("Found " + total + " matching patern in total.");
+                System.out.println("Znaleziono " + total + " linię w której występuje wzorzec");
             } else {
-                System.out.println("Found " + total + " matching paterns in total.");
+                System.out.println("Znaleziono " + total + " linii w których występuje wzorzec");
             }
             System.out.println();
         } else {
             System.out.println();
-            System.out.println("Not found matching patterns!");
+            System.out.println("Nie znaleziono wzorca w tekście");
             System.out.println();
         }
 
