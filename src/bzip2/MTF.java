@@ -14,20 +14,19 @@ import static bzip2.bzip2.ByteSize;
  */
 public class MTF {
     
-    public static int[] codeMTF(int[] resBWT) {
+    public static int[] codeMTF(char[] resBWT) {
         //Move To Front
         int[] resMTF = new int[resBWT.length];
-        int states[] = new int[ByteSize];
+        char states[] = new char[ByteSize];
         for (int i = 0; i < states.length; i++) {
-            states[i] = i;
+            states[i] = (char) i;
         }
-        
         int x;
         for (int i = 0; i < resBWT.length; i++) {
             for (x = 0; x < states.length && states[x] != resBWT[i]; x++)
                 ;
             if (x != 0) {
-                int tmp = states[x];
+                char tmp = states[x];
                 for (int j = x; j > 0; j--) {
                     states[j] = states[j - 1];
                 }
@@ -35,22 +34,20 @@ public class MTF {
             }
             resMTF[i] = x;
         }
-        
         return resMTF;
     }
 
-    public static int[] decodeMTF(int[] resMTF) {
+    public static char[] decodeMTF(int[] resMTF) {
         //Move To Front
-        int[] resBWT = new int[resMTF.length];
-        int states[] = new int[ByteSize];
-        
+        char[] resBWT = new char[resMTF.length];
+        char states[] = new char[ByteSize];
         for (int i = 0; i < states.length; i++) {
-            states[i] = i;
+            states[i] = (char) i;
         }
         int x;
         for (int i = 0; i < resBWT.length; i++) {
             resBWT[i] = states[resMTF[i]];
-            int tmp = states[resMTF[i]];
+            char tmp = states[resMTF[i]];
             for (int j = resMTF[i]; j > 0; j--) {
                 states[j] = states[j - 1];
             }
